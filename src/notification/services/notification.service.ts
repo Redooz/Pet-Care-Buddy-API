@@ -5,8 +5,6 @@ import { NotificationToken } from '../entities/notification-token.entity';
 import { NotificationTokenDto } from '../dtos/notification-token.dto';
 import * as fbAdmin from 'firebase-admin';
 
-fbAdmin.initializeApp();
-
 @Injectable()
 export class NotificationService {
   constructor(

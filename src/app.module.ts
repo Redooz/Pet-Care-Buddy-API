@@ -3,7 +3,6 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { enviroments } from 'enviroments';
 import { NotificationModule } from './notification/notification.module';
-import { FirebaseModule } from './firebase/firebase.module';
 import config from './config';
 
 @Module({
@@ -15,7 +14,6 @@ import config from './config';
     }),
     UserModule,
     NotificationModule,
-    FirebaseModule,
   ],
   controllers: [],
   providers: [],
