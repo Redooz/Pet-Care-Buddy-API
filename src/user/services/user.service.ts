@@ -14,11 +14,7 @@ export class UserService {
     private notificationService: NotificationService,
   ) {}
 
-  async create(newUser: CreateUserDto) {
-    return await this.userRepository.save(newUser);
-  }
-
-  async update(userId: number, updateDto: UpdateUserDto): Promise<User> {
+  async findOne(userId: number) {
     const user = await this.userRepository.findOne({
       where: {
         id: userId,
@@ -28,6 +24,16 @@ export class UserService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
+
+    return user;
+  }
+
+  async create(newUser: CreateUserDto) {
+    return await this.userRepository.save(newUser);
+  }
+
+  async update(userId: number, updateDto: UpdateUserDto): Promise<User> {
+    const user = await this.findOne(userId);
 
     if (updateDto.password) {
       const hashedPassword = await hash(updateDto.password, 10);
@@ -41,15 +47,7 @@ export class UserService {
   }
 
   async enablePush(userId: number, updateDto: UpdateNotificationTokenDto) {
-    const user = await this.userRepository.findOne({
-      where: {
-        id: userId,
-      },
-    });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    const user = await this.findOne(userId);
 
     return await this.notificationService.acceptPushNotification(
       user,
@@ -58,15 +56,7 @@ export class UserService {
   }
 
   async disablePush(userId: number, updateDto: UpdateNotificationTokenDto) {
-    const user = await this.userRepository.findOne({
-      where: {
-        id: userId,
-      },
-    });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
+    const user = await this.findOne(userId);
 
     return await this.notificationService.disablePushNotification(
       user,
