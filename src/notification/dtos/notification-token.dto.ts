@@ -1,9 +1,8 @@
-import { PartialType } from '@nestjs/swagger';
-import { ApiProperty } from '@nestjs/swagger';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class NotificationTokenDto {
   @ApiProperty({
-    example: 'sc7w8eeeekj',
+    example: 'Android',
     description: 'The type of the device',
   })
   deviceType: string;
