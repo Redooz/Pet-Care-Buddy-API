@@ -3,6 +3,7 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { enviroments } from 'enviroments';
 import { NotificationModule } from './notification/notification.module';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
 
 @Module({
@@ -14,6 +15,7 @@ import config from './config';
     }),
     UserModule,
     NotificationModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
