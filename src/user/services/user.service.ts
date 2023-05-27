@@ -23,23 +23,19 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
-  async update(user_id: number, update_dto: any) {
+  async update(userId: number, updateDto: any) {
     const user = await this.userRepository.findOne({
-      where: { id: user_id },
+      where: { id: userId },
     });
-
     if (!user) {
       throw new NotFoundException('User not found');
     }
-
-    const updated_user = {
+    const updatedUser = {
       ...user,
-      username: update_dto.username,
-      email: update_dto.email,
+      username: updateDto.username,
+      email: updateDto.email,
     };
-    const saved_user = await this.userRepository.save(updated_user);
-
-    return saved_user;
+    return await this.userRepository.save(updatedUser);
   }
 
   async enablePush(userId: number, updateDto: UpdateNotificationTokenDto) {
