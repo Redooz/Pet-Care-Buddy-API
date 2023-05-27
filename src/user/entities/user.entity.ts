@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Pet } from '../../pet/entities/pet.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -10,6 +10,8 @@ export class User {
 
   @Column()
   password: string;
+  @OneToMany(() => Pet, (pet) => pet.user)
+  pets: Pet[];
 
   @Column({
     default: 'ACTIVE',

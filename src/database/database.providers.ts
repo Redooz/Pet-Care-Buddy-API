@@ -4,6 +4,7 @@ import config from 'src/config';
 import { User } from 'src/user/entities/user.entity';
 import { Notification } from 'src/notification/entities/notification.entity';
 import { NotificationToken } from 'src/notification/entities/notification-token.entity';
+import { Pet } from 'src/pet/entities/pet.entity';
 
 export const databaseProviders = [
   {
@@ -18,7 +19,7 @@ export const databaseProviders = [
         username: user,
         password: password,
         database: name,
-        entities: [User, Notification, NotificationToken],
+        entities: [User, Notification, NotificationToken, Pet],
         synchronize: true,
       });
 
