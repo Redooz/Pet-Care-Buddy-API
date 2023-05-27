@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from 'src/user/dtos/create-user.dto';
 import { AuthService } from '../services/auth.service';
 import {
@@ -6,8 +6,14 @@ import {
   ApiBody,
   ApiCreatedResponse,
   ApiOperation,
+  ApiResponse,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { Request } from 'express';
+import { LoginAuthDto } from '../dtos/login-auth.dto';
+import { User } from 'src/user/entities/user.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -22,5 +28,16 @@ export class AuthController {
   //
   async register(@Body() user: CreateUserDto) {
     return this.authService.register(user);
+  }
+
+  @ApiOperation({ summary: 'Authenticate and log in a user' })
+  @UseGuards(AuthGuard('local')) //Validate email and password using a guard
+  @ApiResponse({ status: 200, description: 'User logged in successfully' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBody({ type: LoginAuthDto })
+  @Post('login')
+  //
+  loginUser(@Req() req: Request) {
+    return this.authService.generateJWT(req.user as User);
   }
 }
