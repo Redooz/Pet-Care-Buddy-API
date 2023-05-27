@@ -1,5 +1,5 @@
 import { IsEnum, IsNumber, IsString } from 'class-validator';
-import { PartialType } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/mapped-types';
 import { typesPet } from '../constants/pet.enums';
 export class CreatePetDto {
   @IsNumber()
@@ -7,8 +7,9 @@ export class CreatePetDto {
   @IsString()
   name: string;
   description: string;
+  pathologies: string;
   @IsEnum(typesPet)
   type: typesPet;
 }
 
-export class UpdateUserDto extends PartialType(CreatePetDto) {}
+export class UpdatePetDto extends PartialType(CreatePetDto) {}
