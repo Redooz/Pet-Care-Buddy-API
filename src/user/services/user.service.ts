@@ -14,12 +14,10 @@ export class UserService {
     private notificationService: NotificationService,
   ) {}
 
-
   async create(newUser: CreateUserDto) {
     return await this.userRepository.save(newUser);
   }
 
-  
   async findOne(userId: number) {
     const user = await this.userRepository.findOne({
       where: {
