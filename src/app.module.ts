@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { enviroments } from 'enviroments';
 import { NotificationModule } from './notification/notification.module';
 import { PetModule } from './pet/pet.module';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
 
 @Module({
@@ -16,6 +17,7 @@ import config from './config';
     UserModule,
     NotificationModule,
     PetModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
