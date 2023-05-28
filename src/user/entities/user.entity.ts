@@ -1,3 +1,5 @@
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Pet } from '../../pet/entities/pet.entity';
 import { Exclude } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -12,6 +14,8 @@ export class User {
   @Exclude()
   @Column()
   password: string;
+  @OneToMany(() => Pet, (pet) => pet.user)
+  pets: Pet[];
 
   @Column({
     default: 'ACTIVE',
