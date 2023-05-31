@@ -6,7 +6,9 @@ export class CreatePetDto {
   age: number;
   @IsString()
   name: string;
+  @IsString()
   description: string;
+  @IsString()
   pathologies: string;
   @IsEnum(typesPet)
   type: typesPet;
