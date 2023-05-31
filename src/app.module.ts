@@ -6,6 +6,7 @@ import { NotificationModule } from './notification/notification.module';
 import { PetModule } from './pet/pet.module';
 import { AuthModule } from './auth/auth.module';
 import config from './config';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import config from './config';
     PetModule,
     AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
