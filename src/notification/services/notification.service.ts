@@ -10,6 +10,7 @@ import { Notification } from '../entities/notification.entity';
 import { NotificationToken } from '../entities/notification-token.entity';
 import { UpdateNotificationTokenDto } from '../dtos/notification-token.dto';
 import * as fbAdmin from 'firebase-admin';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class NotificationService {
@@ -70,7 +71,7 @@ export class NotificationService {
     }
   }
 
-  async sendPush(user: any, title: string, body: string): Promise<void> {
+  async sendPush(user: User, title: string, body?: string): Promise<void> {
     try {
       const notification = await this.notificationTokenRepository.findOne({
         where: { user: { id: user.id }, status: 'ACTIVE' },
@@ -85,7 +86,7 @@ export class NotificationService {
         title,
         body,
         status: 'ACTIVE',
-        created_by: user.username,
+        created_by: user.email,
       });
 
       await fbAdmin

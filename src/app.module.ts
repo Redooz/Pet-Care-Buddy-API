@@ -7,6 +7,7 @@ import { PetModule } from './pet/pet.module';
 import { AuthModule } from './auth/auth.module';
 import config from './config';
 import { AppController } from './app.controller';
+import { ReminderModule } from './reminder/reminder.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AppController } from './app.controller';
     NotificationModule,
     PetModule,
     AuthModule,
+    ReminderModule,
   ],
   controllers: [AppController],
   providers: [],

@@ -18,4 +18,10 @@ export class Notification {
 
   @Column()
   title: string;
+
+  @Column({ type: 'longtext', nullable: true })
+  body: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  date: Date;
 }
