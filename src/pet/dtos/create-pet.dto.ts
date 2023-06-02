@@ -1,8 +1,8 @@
-import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNumberString, IsString } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { typesPet } from '../constants/pet.enums';
 export class CreatePetDto {
-  @IsNumber()
+  @IsNumberString()
   age: number;
   @IsString()
   name: string;

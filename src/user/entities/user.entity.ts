@@ -10,9 +10,10 @@ export class User {
   @Column()
   email: string;
 
-  @Exclude()
   @Column()
+  @Exclude()
   password: string;
+
   @OneToMany(() => Pet, (pet) => pet.user)
   pets: Pet[];
 
